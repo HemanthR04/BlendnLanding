@@ -4,7 +4,7 @@ import { Instagram } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="w-full border-t bg-white">
+    <footer id="footer" className="w-full border-t bg-white">
       <div className="section-container">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand + Tagline */}

@@ -173,17 +173,14 @@ const HumanoidSection = () => {
               
               <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center">
                 <div className="max-w-2xl">
+                 
                   <h3 className="text-2xl sm:text-3xl md:text-4xl font-display text-white font-bold leading-tight mb-4">
-                    Tired of endless swiping that never turns into something real?
+                    Discover, Connect, Vibe
                   </h3>
-                  <p className="text-white/90 text-base sm:text-lg md:text-xl mb-4">
-                    Blend’n fuses event discovery with real-time, location-based matchmaking—for dating, networking, friendships, and more.
-                  </p>
-                  <p className="text-white font-semibold mb-3">With Blend’n, you can:</p>
-                  <ul className="space-y-3 text-white/90 text-base sm:text-lg">
-                    <li className="flex gap-3"><span>1.Discover curated local events you’ll actually want to attend (yes, even the ones your friend gatekeeps)</span></li>
-                    <li className="flex gap-3"><span>2.Check in and instantly go from invisible to visible (and vice versa)</span></li>
-                    <li className="flex gap-3"><span>3.See who’s around anonymously and vibe-match in real time</span></li>
+                  <ul className="space-y-4 text-white/90 text-base sm:text-lg md:text-xl">
+                    <li>Discover curated local events you'll actually want to attend (yes, even the ones your friend gatekeeps)</li>
+                    <li>Check in and instantly go from invisible to visible (and vice versa)</li>
+                    <li>See who's around anonymously and vibe-match in real time</li>
                   </ul>
                 </div>
               </div>

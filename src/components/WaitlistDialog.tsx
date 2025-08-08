@@ -59,7 +59,14 @@ const WaitlistDialog: React.FC<WaitlistDialogProps> = ({ children }) => {
       });
 
       if (!response.ok) {
-        throw new Error("Request failed");
+        let message = "Request failed";
+        try {
+          const data = await response.json();
+          if (data?.error) message = data.error;
+        } catch (_) {
+          // ignore
+        }
+        throw new Error(message);
       }
 
       toast({
@@ -71,7 +78,8 @@ const WaitlistDialog: React.FC<WaitlistDialogProps> = ({ children }) => {
     } catch (error) {
       toast({
         title: "Something went wrong",
-        description: "Please try again in a moment.",
+        description:
+          error instanceof Error ? error.message : "Please try again in a moment.",
       });
     } finally {
       setIsSubmitting(false);

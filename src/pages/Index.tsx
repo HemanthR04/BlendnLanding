@@ -60,14 +60,14 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen app-fade-in">
       <Navbar />
       <main className="space-y-4 sm:space-y-8"> {/* Reduced space on mobile */}
         <Hero />
         <HumanoidSection />
         <SpecsSection />
         {/* <DetailsSection /> */}
-        <ImageShowcaseSection />
+        {/* <ImageShowcaseSection /> */}
         <Features />
         <Testimonials />
         <FAQ />

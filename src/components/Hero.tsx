@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import LottieAnimation from "./LottieAnimation";
 import WaitlistDialog from "@/components/WaitlistDialog";
 import { Highlighter } from "@/components/magicui/highlighter";
-
+import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text";
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
@@ -91,12 +91,13 @@ const Hero = () => {
   
   return (
     <section 
-      className="overflow-hidden relative bg-cover" 
+      className="overflow-hidden relative bg-cover min-h-[100svh]" 
       id="hero" 
       style={{
         backgroundImage: 'url("/Header-background.webp")',
-        backgroundPosition: 'center 30%', 
-        padding: isMobile ? '100px 12px 40px' : '120px 20px 60px'
+        backgroundPosition: 'center bottom',
+        backgroundSize: 'cover',
+        padding: isMobile ? '96px 12px 60px' : '112px 20px 80px'
       }}
     >
       <div className="absolute -top-[10%] -right-[5%] w-1/2 h-[70%] bg-pulse-gradient opacity-20 blur-3xl rounded-full"></div>
@@ -111,7 +112,7 @@ const Hero = () => {
               <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">01</span>
               <span>Purpose</span>
             </div>
-            
+           
             <h1 
               className="section-title text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight opacity-0 animate-fade-in" 
               style={{ animationDelay: "0.3s" }}
@@ -124,13 +125,14 @@ const Hero = () => {
               style={{ animationDelay: "0.5s" }} 
               className="section-subtitle mt-3 sm:mt-6 mb-4 sm:mb-8 leading-relaxed opacity-0 animate-fade-in text-gray-950 font-normal text-base sm:text-lg text-left"
             >
-              Blend’n helps you discover events in your city and connect with people around you—live, in real-time, and anonymously. No catfish. No cringey bios. Just vibes.
+              Blend’n helps you discover events in your city and connect with people around you live, in real-time, and anonymously. No catfish. No cringey bios. Just vibes.
             </p>
             
             <div 
               className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-in" 
               style={{ animationDelay: "0.7s" }}
             >
+              
               <WaitlistDialog>
                 <button 
                   className="flex items-center justify-center group w-full sm:w-auto text-center" 
@@ -167,12 +169,14 @@ const Hero = () => {
               <>
               <div className="absolute inset-0 bg-dark-900 rounded-2xl sm:rounded-3xl -z-10 shadow-xl max-w-md mx-auto"></div>
               <div className="relative transition-all duration-500 ease-out overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl max-w-md mx-auto">
-                <img 
+                  <img 
                   ref={imageRef} 
                   src="/lovable-uploads/hero-image.jpg" 
                   alt="Blendn" 
                   className="w-full h-auto object-cover transition-transform duration-500 ease-out" 
-                  style={{ transformStyle: 'preserve-3d' }} 
+                    style={{ transformStyle: 'preserve-3d' }} 
+                    loading="eager"
+                    decoding="async"
                 />
                 <div className="absolute inset-0" style={{ backgroundImage: 'url("/hero-image.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', mixBlendMode: 'overlay', opacity: 0.5 }}></div>
               </div>

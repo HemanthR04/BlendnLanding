@@ -8,6 +8,9 @@ import { Button } from "@/components/ui/button";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<
+    "home" | "features" | "how" | "contact"
+  >("home");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,6 +42,53 @@ const Navbar = () => {
     };
   }, []);
 
+  // Determine active section for highlighting nav links
+  useEffect(() => {
+    const getPageOffset = (el: HTMLElement | null) => {
+      if (!el) return Infinity;
+      const rect = el.getBoundingClientRect();
+      return rect.top + window.scrollY;
+    };
+
+    const computeActive = () => {
+      const featuresEl = document.getElementById("features");
+      const faqEl = document.getElementById("faq");
+      const footerEl = document.getElementById("footer");
+
+      const featuresTop = getPageOffset(featuresEl as HTMLElement);
+      const faqTop = getPageOffset(faqEl as HTMLElement);
+      const footerTop = getPageOffset(footerEl as HTMLElement);
+      const y = window.scrollY + 120; // offset to account for header
+
+      // If we're at or near the very bottom, mark contact
+      const nearBottom =
+        window.scrollY + window.innerHeight >=
+        (document.documentElement?.scrollHeight || document.body.scrollHeight) - 10;
+      if (nearBottom) {
+        setActiveSection("contact");
+        return;
+      }
+
+      if (y < featuresTop - 100) {
+        setActiveSection("home");
+      } else if (y < faqTop - 100) {
+        setActiveSection("features");
+      } else if (y < footerTop - 100) {
+        setActiveSection("how");
+      } else {
+        setActiveSection("contact");
+      }
+    };
+
+    computeActive();
+    window.addEventListener("scroll", computeActive, { passive: true });
+    window.addEventListener("resize", computeActive);
+    return () => {
+      window.removeEventListener("scroll", computeActive);
+      window.removeEventListener("resize", computeActive);
+    };
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -55,15 +105,12 @@ const Navbar = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300",
-        isScrolled
-          ? "bg-white/80 backdrop-blur shadow-sm border-gray-200 py-1 md:py-2"
-          : "bg-white border-gray-200 py-2 sm:py-3 md:py-4"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 overflow-visible min-h-[20px] bg-transparent border-transparent"
       )}
     >
-      <div className="max-w-7xl mx-auto grid grid-cols-3 items-center px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto grid grid-cols-3 items-center px-4 sm:px-6 lg:px-8 min-h-[20px]">
         {/* Left: Logo */}
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
           <a
             href="#top"
             className="inline-flex items-center gap-2 fadeIn stagger-1"
@@ -73,15 +120,20 @@ const Navbar = () => {
               scrollToTop();
             }}
           >
-            <img src="/logo2.webp" alt="Blendn logo" className="h-9 sm:h-10 w-auto" />
+            <img src="/brandlogo.webp" alt="Blendn logo" className="h-10 sm:h-16 md:h-16 lg:h-20 w-auto md:-my-2 lg:-my-3" />
           </a>
         </div>
 
         {/* Center: Desktop Navigation */}
-        <nav className="hidden md:flex items-center justify-center gap-8">
+        <nav className="hidden md:flex items-center justify-center gap-2">
           <a
             href="#"
-            className="nav-link fadeIn stagger-2"
+            className={cn(
+              "inline-flex items-center px-3 py-1.5 rounded-full text-sm transition-all backdrop-blur shadow-sm fadeIn stagger-2",
+              activeSection === "home"
+                ? "bg-gray-900 text-white shadow-md"
+                : "bg-white/70 text-gray-800 hover:bg-white"
+            )}
             onClick={(e) => {
               e.preventDefault();
               scrollToTop();
@@ -89,8 +141,40 @@ const Navbar = () => {
           >
             Home
           </a>
-          <a href="#features" className="nav-link fadeIn stagger-3">About</a>
-          <a href="#details" className="nav-link fadeIn stagger-4">Contact</a>
+          <a
+            href="#features"
+            className={cn(
+              "inline-flex items-center px-3 py-1.5 rounded-full text-sm transition-all backdrop-blur shadow-sm fadeIn stagger-3",
+              activeSection === "features"
+                ? "bg-gray-900 text-white shadow-md"
+                : "bg-white/70 text-gray-800 hover:bg-white"
+            )}
+          >
+            Features
+          </a>
+          <a
+            href="#faq"
+            className={cn(
+              "inline-flex items-center px-3 py-1.5 rounded-full text-sm transition-all backdrop-blur shadow-sm fadeIn stagger-4 whitespace-nowrap",
+              activeSection === "how"
+                ? "bg-gray-900 text-white shadow-md"
+                : "bg-white/70 text-gray-800 hover:bg-white"
+            )}
+          >
+            How it works
+          </a>
+          <a
+            href="#footer"
+            className={cn(
+              "inline-flex items-center px-3 py-1.5 rounded-full text-sm transition-all backdrop-blur shadow-sm",
+              activeSection === "contact"
+                ? "bg-gray-900 text-white shadow-md"
+                : "bg-white/70 text-gray-800 hover:bg-white"
+            )}
+            onClick={() => setActiveSection("contact")}
+          >
+            Contact
+          </a>
         </nav>
 
         {/* Right: CTA (desktop) + Mobile menu button */}
@@ -100,7 +184,7 @@ const Navbar = () => {
               Join Waitlist
             </Button>
           </WaitlistDialog>
-          {/* Mobile menu button - increased touch target */}
+          {/* Mobile menu button - top right on mobile */}
           <button
             className="md:hidden text-gray-700 p-3 focus:outline-none rounded-full hover:bg-gray-100 active:bg-gray-200 transition"
             onClick={toggleMenu}
@@ -119,10 +203,10 @@ const Navbar = () => {
         )}
         aria-hidden={!isMenuOpen}
       >
-        {/* Dim overlay */}
+        {/* Background overlay */}
         <div
           className={cn(
-            "absolute inset-0 bg-black/40 transition-opacity duration-300",
+            "absolute inset-0 bg-white transition-opacity duration-300",
             isMenuOpen ? "opacity-100" : "opacity-0"
           )}
           onClick={() => {
@@ -131,17 +215,33 @@ const Navbar = () => {
           }}
         />
 
-        {/* Sliding panel */}
+        {/* Fullscreen menu content */}
         <div
           className={cn(
-            "absolute right-0 top-0 h-full w-11/12 max-w-sm bg-white shadow-xl rounded-l-2xl pt-20 px-6 transition-transform duration-300 ease-in-out",
-            isMenuOpen ? "translate-x-0" : "translate-x-full"
+            "absolute inset-0 bg-white px-6 transition-opacity duration-300 flex flex-col items-center justify-center",
+            isMenuOpen ? "opacity-100" : "opacity-0"
           )}
         >
-          <nav className="flex flex-col space-y-4 mt-4">
+          {/* Close button inside overlay */}
+          <button
+            className="absolute right-4 top-4 p-2 rounded-full text-gray-700 hover:bg-gray-100 active:bg-gray-200 transition"
+            aria-label="Close menu"
+            onClick={() => {
+              setIsMenuOpen(false);
+              document.body.style.overflow = '';
+            }}
+          >
+            <X size={22} />
+          </button>
+          <nav className="w-full max-w-sm flex flex-col items-center gap-3">
             <a
               href="#"
-              className="text-lg font-medium py-3 px-4 rounded-xl hover:bg-gray-100 active:bg-gray-200"
+              className={cn(
+                "w-full text-center text-xl font-medium py-4 px-4 rounded-xl",
+                activeSection === "home"
+                  ? "bg-gray-900 text-white"
+                  : "bg-gray-50 hover:bg-gray-100"
+              )}
               onClick={(e) => {
                 e.preventDefault();
                 scrollToTop();
@@ -153,27 +253,53 @@ const Navbar = () => {
             </a>
             <a
               href="#features"
-              className="text-lg font-medium py-3 px-4 rounded-xl hover:bg-gray-100 active:bg-gray-200"
+              className={cn(
+                "w-full text-center text-xl font-medium py-4 px-4 rounded-xl",
+                activeSection === "features"
+                  ? "bg-gray-900 text-white"
+                  : "bg-gray-50 hover:bg-gray-100"
+              )}
               onClick={() => {
                 setIsMenuOpen(false);
                 document.body.style.overflow = '';
               }}
             >
-              About
+              Features
             </a>
             <a
-              href="#details"
-              className="text-lg font-medium py-3 px-4 rounded-xl hover:bg-gray-100 active:bg-gray-200"
+              href="#faq"
+              className={cn(
+                "w-full text-center text-xl font-medium py-4 px-4 rounded-xl whitespace-nowrap",
+                activeSection === "how"
+                  ? "bg-gray-900 text-white"
+                  : "bg-gray-50 hover:bg-gray-100"
+              )}
               onClick={() => {
                 setIsMenuOpen(false);
                 document.body.style.overflow = '';
+              }}
+            >
+              How it works
+            </a>
+            <a
+              href="#footer"
+              className={cn(
+                "w-full text-center text-xl font-medium py-4 px-4 rounded-xl",
+                activeSection === "contact"
+                  ? "bg-gray-900 text-white"
+                  : "bg-gray-50 hover:bg-gray-100"
+              )}
+              onClick={() => {
+                setIsMenuOpen(false);
+                document.body.style.overflow = '';
+                setActiveSection("contact");
               }}
             >
               Contact
             </a>
             <a
               href="#newsletter"
-              className="mt-2 button-primary inline-flex justify-center items-center rounded-full"
+              className="mt-4 button-primary inline-flex justify-center items-center rounded-full"
               onClick={() => {
                 setIsMenuOpen(false);
                 document.body.style.overflow = '';
