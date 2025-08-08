@@ -1,6 +1,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { ArrowRight } from "lucide-react";
+import WaitlistDialog from "@/components/WaitlistDialog";
 
 const CTA = () => {
   const ctaRef = useRef<HTMLDivElement>(null);
@@ -57,9 +58,11 @@ const CTA = () => {
               Request Early Access
               <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
             </a>
-            <a href="#" className="button-secondary w-full sm:w-auto text-center">
-              Join Waitlist
-            </a>
+            <WaitlistDialog>
+              <button className="button-secondary w-full sm:w-auto text-center">
+                Join Waitlist
+              </button>
+            </WaitlistDialog>
           </div>
         </div>
       </div>

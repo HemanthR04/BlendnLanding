@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
+import WaitlistDialog from "@/components/WaitlistDialog";
+import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -53,27 +55,33 @@ const Navbar = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 py-2 sm:py-3 md:py-4 transition-all duration-300 bg-white shadow-sm border-b border-gray-200"
+        "fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300",
+        isScrolled
+          ? "bg-white/80 backdrop-blur shadow-sm border-gray-200 py-1 md:py-2"
+          : "bg-white border-gray-200 py-2 sm:py-3 md:py-4"
       )}
     >
-      <div className="container flex items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a
-          href="#top"
-          className="inline-flex items-center gap-3"
-          aria-label="Blendn home"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToTop();
-          }}
-        >
-          <img src="/logo2.webp" alt="Blendn logo" className="h-16 w-auto" />
-        </a>
+      <div className="max-w-7xl mx-auto grid grid-cols-3 items-center px-4 sm:px-6 lg:px-8">
+        {/* Left: Logo */}
+        <div className="flex items-center">
+          <a
+            href="#top"
+            className="inline-flex items-center gap-2 fadeIn stagger-1"
+            aria-label="Blendn home"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToTop();
+            }}
+          >
+            <img src="/logo2.webp" alt="Blendn logo" className="h-9 sm:h-10 w-auto" />
+          </a>
+        </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8">
-          <a 
-            href="#" 
-            className="nav-link"
+        {/* Center: Desktop Navigation */}
+        <nav className="hidden md:flex items-center justify-center gap-8">
+          <a
+            href="#"
+            className="nav-link fadeIn stagger-2"
             onClick={(e) => {
               e.preventDefault();
               scrollToTop();
@@ -81,18 +89,26 @@ const Navbar = () => {
           >
             Home
           </a>
-          <a href="#features" className="nav-link">About</a>
-          <a href="#details" className="nav-link">Contact</a>
+          <a href="#features" className="nav-link fadeIn stagger-3">About</a>
+          <a href="#details" className="nav-link fadeIn stagger-4">Contact</a>
         </nav>
 
-        {/* Mobile menu button - increased touch target */}
-        <button 
-          className="md:hidden text-gray-700 p-3 focus:outline-none rounded-full hover:bg-gray-100 active:bg-gray-200 transition"
-          onClick={toggleMenu}
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Right: CTA (desktop) + Mobile menu button */}
+        <div className="flex items-center justify-end gap-2">
+          <WaitlistDialog>
+            <Button size="sm" className="hidden md:inline-flex rounded-full h-9 px-4 fadeIn stagger-3">
+              Join Waitlist
+            </Button>
+          </WaitlistDialog>
+          {/* Mobile menu button - increased touch target */}
+          <button
+            className="md:hidden text-gray-700 p-3 focus:outline-none rounded-full hover:bg-gray-100 active:bg-gray-200 transition"
+            onClick={toggleMenu}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation - overlay + sliding panel */}
@@ -154,6 +170,16 @@ const Navbar = () => {
               }}
             >
               Contact
+            </a>
+            <a
+              href="#newsletter"
+              className="mt-2 button-primary inline-flex justify-center items-center rounded-full"
+              onClick={() => {
+                setIsMenuOpen(false);
+                document.body.style.overflow = '';
+              }}
+            >
+              Join Waitlist
             </a>
           </nav>
         </div>

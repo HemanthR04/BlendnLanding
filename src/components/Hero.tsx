@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import LottieAnimation from "./LottieAnimation";
+import WaitlistDialog from "@/components/WaitlistDialog";
+import { Highlighter } from "@/components/magicui/highlighter";
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -114,8 +116,8 @@ const Hero = () => {
               className="section-title text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight opacity-0 animate-fade-in" 
               style={{ animationDelay: "0.3s" }}
             >
-              Blendn: Where Events 
-              <br className="hidden sm:inline" />Meet Serendipity
+              Blendn: Where <Highlighter trigger="visible" delayMs={200}>Events</Highlighter>
+              <br className="hidden sm:inline" />Meet <Highlighter action="underline">Serendipity</Highlighter>
             </h1>
             
             <p 
@@ -129,24 +131,25 @@ const Hero = () => {
               className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-in" 
               style={{ animationDelay: "0.7s" }}
             >
-              <a 
-                href="#get-access" 
-                className="flex items-center justify-center group w-full sm:w-auto text-center" 
-                style={{
-                  backgroundColor: '#FE5C02',
-                  borderRadius: '1440px',
-                  boxSizing: 'border-box',
-                  color: '#FFFFFF',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  lineHeight: '20px',
-                  padding: '16px 24px', // Slightly reduced padding for mobile
-                  border: '1px solid white',
-                }}
-              >
-                Join the waitlist
-                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </a>
+              <WaitlistDialog>
+                <button 
+                  className="flex items-center justify-center group w-full sm:w-auto text-center" 
+                  style={{
+                    backgroundColor: '#FE5C02',
+                    borderRadius: '1440px',
+                    boxSizing: 'border-box',
+                    color: '#FFFFFF',
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                    lineHeight: '20px',
+                    padding: '16px 24px',
+                    border: '1px solid white',
+                  }}
+                >
+                  Join the waitlist
+                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </button>
+              </WaitlistDialog>
             </div>
           </div>
           

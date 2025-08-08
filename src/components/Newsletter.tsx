@@ -1,22 +1,9 @@
-import React, { useState } from "react";
-import { toast } from "@/components/ui/use-toast";
+import React from "react";
 import { ArrowRight } from "lucide-react";
+import WaitlistDialog from "@/components/WaitlistDialog";
 
 const Newsletter = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleJoinWaitlist = () => {
-    setIsSubmitting(true);
-
-    // Simulate API call
-    setTimeout(() => {
-      toast({
-        title: "Thank you for joining the waitlist!",
-        description: "You'll receive updates about Blendn soon."
-      });
-      setIsSubmitting(false);
-    }, 1000);
-  };
+  
 
   return <section id="newsletter" className="bg-white py-0">
       <div className="section-container opacity-0 animate-on-scroll">
@@ -34,25 +21,25 @@ const Newsletter = () => {
           </p>
           
           <div className="flex justify-start">
-            <button 
-              onClick={handleJoinWaitlist}
-              disabled={isSubmitting}
-              className="flex items-center justify-center group text-center"
-              style={{
-                backgroundColor: '#FE5C02',
-                borderRadius: '1440px',
-                boxSizing: 'border-box',
-                color: '#FFFFFF',
-                cursor: 'pointer',
-                fontSize: '14px',
-                lineHeight: '20px',
-                padding: '16px 24px',
-                border: '1px solid white',
-              }}
-            >
-              {isSubmitting ? "Submitting..." : "Join the waitlist"}
-              {!isSubmitting && <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />}
-            </button>
+            <WaitlistDialog>
+              <button 
+                className="flex items-center justify-center group text-center"
+                style={{
+                  backgroundColor: '#FE5C02',
+                  borderRadius: '1440px',
+                  boxSizing: 'border-box',
+                  color: '#FFFFFF',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  lineHeight: '20px',
+                  padding: '16px 24px',
+                  border: '1px solid white',
+                }}
+              >
+                Join the waitlist
+                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </button>
+            </WaitlistDialog>
           </div>
         </div>
       </div>

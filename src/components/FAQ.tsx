@@ -1,3 +1,4 @@
+import WaitlistDialog from "@/components/WaitlistDialog";
 import React from "react";
 import {
   Accordion,
@@ -59,23 +60,24 @@ const FAQ = () => {
                   Dropping soon. Join the waitlist to get first access.
                 </p>
                 <div className="mt-4 flex justify-center">
-                  <a
-                    href="#newsletter"
-                    className="inline-flex items-center justify-center group text-center"
-                    style={{
-                      backgroundColor: "#FE5C02",
-                      borderRadius: "1440px",
-                      boxSizing: "border-box",
-                      color: "#FFFFFF",
-                      cursor: "pointer",
-                      fontSize: "14px",
-                      lineHeight: "20px",
-                      padding: "10px 16px",
-                      border: "1px solid white",
-                    }}
-                  >
-                    Join the waitlist
-                  </a>
+                  <WaitlistDialog>
+                    <button
+                      className="inline-flex items-center justify-center group text-center"
+                      style={{
+                        backgroundColor: "#FE5C02",
+                        borderRadius: "1440px",
+                        boxSizing: "border-box",
+                        color: "#FFFFFF",
+                        cursor: "pointer",
+                        fontSize: "14px",
+                        lineHeight: "20px",
+                        padding: "10px 16px",
+                        border: "1px solid white",
+                      }}
+                    >
+                      Join the waitlist
+                    </button>
+                  </WaitlistDialog>
                 </div>
               </AccordionContent>
             </AccordionItem>
