@@ -37,16 +37,15 @@ const FeatureCard = ({ icon, title, description, index }: FeatureCardProps) => {
   }, []);
   
   return (
-    <div 
+    <div
       ref={cardRef}
       className={cn(
-        "feature-card glass-card opacity-0 p-4 sm:p-6",
-        "lg:hover:bg-gradient-to-br lg:hover:from-white lg:hover:to-pulse-50",
-        "transition-all duration-300"
+        "opacity-0 p-4 sm:p-6 bg-white border border-gray-200 rounded-2xl shadow-elegant hover:shadow-elegant-hover",
+        "transition-all duration-300 hover:-translate-y-1"
       )}
       style={{ animationDelay: `${0.1 * index}s` }}
     >
-      <div className="rounded-full bg-pulse-50 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center text-pulse-500 mb-4 sm:mb-5">
+      <div className="rounded-full bg-pulse-100 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center text-pulse-700 text-base sm:text-lg mb-4 sm:mb-5">
         {icon}
       </div>
       <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">{title}</h3>
@@ -95,50 +94,48 @@ const Features = () => {
             <span>Features</span>
           </div>
           <h2 className="section-title mb-3 sm:mb-4 opacity-0 fade-in-element">
-          What can you do on Blendn?
+            Stuff you’ll actually use
           </h2>
           <p className="section-subtitle mx-auto opacity-0 fade-in-element">
-          Blendn is the future of event discovery.
+            Real-life plans, zero cringe. Built for nights out, festivals, pop-ups, and everything in between.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           <FeatureCard
-            icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-6 sm:h-6"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>}
-            title="Discover Events"
-            description="From concerts to tech talks, marathons to underground stand-up gigs—we show you what's happening around you. You choose the vibe."
+            icon={<span aria-hidden>✨</span>}
+            title="Smart Feed"
+            description="Your city, your vibe: trending drops, niche scenes, and hidden gems—no doomscroll."
             index={0}
           />
           <FeatureCard
-            icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-6 sm:h-6"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle><path d="M12 1v6m0 10v6M1 12h6m10 0h6"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>}
-            title="Check In & Go Invisible"
-            description="At the event? Hit check-in and access the matchmaking feature. Want to stay anonymous? Done. It's like spy mode, but make it social."
+            icon={<span aria-hidden>👻</span>}
+            title="Check‑in + Ghost Mode"
+            description="Tap in at events to unlock matches. Prefer low‑key? Switch to ghost mode and browse without being seen."
             index={1}
           />
           <FeatureCard
-            icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-6 sm:h-6"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>}
-            title="Match Anonymously"
-            description="See people around you based on preferences (dating, networking, friendship, business).
-Blurred profiles. Redacted names. You swipe right. If they vibe back only then do you chat."
+            icon={<span aria-hidden>🫧</span>}
+            title="Anonymous Match"
+            description={`Blurred until it’s mutual. Pick your intent: dating, friends, collab, or networking.`}
             index={2}
           />
           <FeatureCard
-            icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-6 sm:h-6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>}
-            title="Chatrooms Without Cringe"
-            description="Every event comes with its own anonymous group chat. Roast the DJ, ask who else is stuck in the food line, or drop the best one-liner of the night."
+            icon={<span aria-hidden>💬</span>}
+            title="Event Chat (No Cringe)"
+            description="Anonymous chat for every event. Ask questions, find the afters, or drop a one‑liner."
             index={3}
           />
           <FeatureCard
-            icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-6 sm:h-6"><path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>}
-            title="Real-Time Stories"
-            description="Attendees and organizers can post short videos/photos to show off the current vibe. No more FOMO. Decide in 10 seconds whether it&apos;s worth showing up."
+            icon={<span aria-hidden>🎥</span>}
+            title="Live Stories"
+            description="10‑second vibe check from people there. Decide fast, pull up or pass."
             index={4}
           />
           <FeatureCard
-            icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-6 sm:h-6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>}
-            title="Group Matchmaking"
-            description="Going out with your squad? Group check-in lets your entire crew match with other groups looking for similar vibes—whether it&apos;s for friendship, networking, or just fun conversations.
-"
+            icon={<span aria-hidden>👥</span>}
+            title="Crew Linking"
+            description={`Roll with your people. Match your group with other squads on the same energy.`}
             index={5}
           />
         </div>

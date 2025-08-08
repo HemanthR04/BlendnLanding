@@ -22,6 +22,21 @@ const Navbar = () => {
     document.body.style.overflow = !isMenuOpen ? 'hidden' : '';
   };
 
+  // Ensure body scroll is restored on unmount and close on Escape
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsMenuOpen(false);
+        document.body.style.overflow = '';
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -38,25 +53,20 @@ const Navbar = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 py-2 sm:py-3 md:py-4 transition-all duration-300",
-        isScrolled 
-          ? "bg-white/80 backdrop-blur-md shadow-sm" 
-          : "bg-transparent"
+        "fixed top-0 left-0 right-0 z-50 py-2 sm:py-3 md:py-4 transition-all duration-300 bg-white shadow-sm border-b border-gray-200"
       )}
     >
       <div className="container flex items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a 
-          href="#" 
-          className="flex items-center space-x-2"
+        <a
+          href="#top"
+          className="inline-flex items-center gap-3"
+          aria-label="Blendn home"
           onClick={(e) => {
             e.preventDefault();
             scrollToTop();
           }}
-          aria-label="Blendn"
         >
-          <span className="text-xl sm:text-2xl font-satoshi font-bold tracking-tighter text-gray-900">
-            BLENDN
-          </span>
+          <img src="/logo2.webp" alt="Blendn logo" className="h-16 w-auto" />
         </a>
 
         {/* Desktop Navigation */}
@@ -77,7 +87,7 @@ const Navbar = () => {
 
         {/* Mobile menu button - increased touch target */}
         <button 
-          className="md:hidden text-gray-700 p-3 focus:outline-none" 
+          className="md:hidden text-gray-700 p-3 focus:outline-none rounded-full hover:bg-gray-100 active:bg-gray-200 transition"
           onClick={toggleMenu}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         >
@@ -85,45 +95,68 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Navigation - improved for better touch experience */}
-      <div className={cn(
-        "fixed inset-0 z-40 bg-white flex flex-col pt-16 px-6 md:hidden transition-all duration-300 ease-in-out",
-        isMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"
-      )}>
-        <nav className="flex flex-col space-y-8 items-center mt-8">
-          <a 
-            href="#" 
-            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg hover:bg-gray-100" 
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToTop();
-              setIsMenuOpen(false);
-              document.body.style.overflow = '';
-            }}
-          >
-            Home
-          </a>
-          <a 
-            href="#features" 
-            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg hover:bg-gray-100" 
-            onClick={() => {
-              setIsMenuOpen(false);
-              document.body.style.overflow = '';
-            }}
-          >
-            About
-          </a>
-          <a 
-            href="#details" 
-            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg hover:bg-gray-100" 
-            onClick={() => {
-              setIsMenuOpen(false);
-              document.body.style.overflow = '';
-            }}
-          >
-            Contact
-          </a>
-        </nav>
+      {/* Mobile Navigation - overlay + sliding panel */}
+      <div
+        className={cn(
+          "fixed inset-0 z-50 md:hidden transition-all",
+          isMenuOpen ? "pointer-events-auto" : "pointer-events-none"
+        )}
+        aria-hidden={!isMenuOpen}
+      >
+        {/* Dim overlay */}
+        <div
+          className={cn(
+            "absolute inset-0 bg-black/40 transition-opacity duration-300",
+            isMenuOpen ? "opacity-100" : "opacity-0"
+          )}
+          onClick={() => {
+            setIsMenuOpen(false);
+            document.body.style.overflow = '';
+          }}
+        />
+
+        {/* Sliding panel */}
+        <div
+          className={cn(
+            "absolute right-0 top-0 h-full w-11/12 max-w-sm bg-white shadow-xl rounded-l-2xl pt-20 px-6 transition-transform duration-300 ease-in-out",
+            isMenuOpen ? "translate-x-0" : "translate-x-full"
+          )}
+        >
+          <nav className="flex flex-col space-y-4 mt-4">
+            <a
+              href="#"
+              className="text-lg font-medium py-3 px-4 rounded-xl hover:bg-gray-100 active:bg-gray-200"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToTop();
+                setIsMenuOpen(false);
+                document.body.style.overflow = '';
+              }}
+            >
+              Home
+            </a>
+            <a
+              href="#features"
+              className="text-lg font-medium py-3 px-4 rounded-xl hover:bg-gray-100 active:bg-gray-200"
+              onClick={() => {
+                setIsMenuOpen(false);
+                document.body.style.overflow = '';
+              }}
+            >
+              About
+            </a>
+            <a
+              href="#details"
+              className="text-lg font-medium py-3 px-4 rounded-xl hover:bg-gray-100 active:bg-gray-200"
+              onClick={() => {
+                setIsMenuOpen(false);
+                document.body.style.overflow = '';
+              }}
+            >
+              Contact
+            </a>
+          </nav>
+        </div>
       </div>
     </header>
   );

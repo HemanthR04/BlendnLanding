@@ -96,12 +96,12 @@ const HumanoidSection = () => {
                 animationDelay: "0.1s"
               }}>
                 <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">02</span>
-                <span>Blendn</span>
+                <span>Blend’n</span>
               </div>
             </div>
             
             <h2 className="section-title text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-1 md:mb-2">
-              Why Blendn
+              What is Blend’n?
             </h2>
           </div>
           
@@ -128,16 +128,18 @@ const HumanoidSection = () => {
               
               <div className="absolute top-4 right-4 z-20">
                 <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
-                  <span className="text-sm font-medium">The vision</span>
+                  <span className="text-sm font-medium">Overview</span>
                 </div>
               </div>
               
               <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center">
-                <div className="max-w-lg">
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-display text-white font-bold leading-tight mb-4">
-                  We combines event discovery with real-time, proximity-based matchmaking—for dating, networking, friendships, and more, all happening where you are.
-
+                <div className="max-w-2xl">
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-display text-white font-bold leading-tight mb-3">
+                    One part event app. One part matchmaking. All parts awesome.
                   </h3>
+                  <p className="text-white/90 text-base sm:text-lg md:text-xl">
+                    The app that brings real-life interactions back.
+                  </p>
                 </div>
               </div>
             </div>
@@ -165,15 +167,24 @@ const HumanoidSection = () => {
               
               <div className="absolute top-4 right-4 z-20">
                 <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
-                  <span className="text-sm font-medium">The vision</span>
+                  <span className="text-sm font-medium">With Blend’n, you can</span>
                 </div>
               </div>
               
               <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center">
-                <div className="max-w-lg">
+                <div className="max-w-2xl">
                   <h3 className="text-2xl sm:text-3xl md:text-4xl font-display text-white font-bold leading-tight mb-4">
-                  Find local events you’ll actually want to attend (yes, even that techno concert your friend gatekept).
+                    Tired of endless swiping that never turns into something real?
                   </h3>
+                  <p className="text-white/90 text-base sm:text-lg md:text-xl mb-4">
+                    Blend’n fuses event discovery with real-time, location-based matchmaking—for dating, networking, friendships, and more.
+                  </p>
+                  <p className="text-white font-semibold mb-3">With Blend’n, you can:</p>
+                  <ul className="space-y-3 text-white/90 text-base sm:text-lg">
+                    <li className="flex gap-3"><span>1.Discover curated local events you’ll actually want to attend (yes, even the ones your friend gatekeeps)</span></li>
+                    <li className="flex gap-3"><span>2.Check in and instantly go from invisible to visible (and vice versa)</span></li>
+                    <li className="flex gap-3"><span>3.See who’s around anonymously and vibe-match in real time</span></li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -201,15 +212,18 @@ const HumanoidSection = () => {
               
               <div className="absolute top-4 right-4 z-20">
                 <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
-                  <span className="text-sm font-medium">The vision</span>
+                  <span className="text-sm font-medium">Coming soon</span>
                 </div>
               </div>
               
               <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center">
-                <div className="max-w-lg">
+                <div className="max-w-2xl">
                   <h3 className="text-2xl sm:text-3xl md:text-4xl font-display text-white font-bold leading-tight mb-4">
-                    WWhere discovery meets  <span className="text-[#FC4D0A]">destiny—in the real world.</span>
+                    AI-powered recommendations to help you find what and who you really connect with.
                   </h3>
+                  <p className="text-white/90 text-base sm:text-lg md:text-xl">
+                    Because scrolling from your couch is out. Showing up and vibing <span className="text-[#FC4D0A] font-semibold">IRL</span>? That’s the Blend’n way.
+                  </p>
                 </div>
               </div>
             </div>

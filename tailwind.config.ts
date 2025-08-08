@@ -142,13 +142,13 @@ export default {
 				'hero-gradient-2': 'linear-gradient(90deg, hsla(39, 100%, 77%, 1) 0%, hsla(22, 90%, 57%, 1) 100%)',
 				'pulse-gradient': 'linear-gradient(180deg, rgba(249,115,22,0.8) 0%, rgba(249,115,22,0) 100%)',
 			},
-			fontFamily: {
-				'sans': ['Inter', 'sans-serif'],
-				'display': ['Brockmann', 'SF Pro Display', 'Inter', 'sans-serif'],
-				'brockmann': ['Brockmann', 'serif'],
-				'playfair': ['"Playfair Display"', 'serif'],
-				'satoshi': ['Satoshi', 'sans-serif'],
-			},
+				fontFamily: {
+					'sans': ['Satoshi', 'Inter', 'sans-serif'],
+					'display': ['Brockmann', 'SF Pro Display', 'Inter', 'sans-serif'],
+					'brockmann': ['Brockmann', 'serif'],
+					'playfair': ['"Playfair Display"', 'serif'],
+					'satoshi': ['Satoshi', 'sans-serif'],
+				},
 			boxShadow: {
 				'elegant': '0 4px 20px rgba(0, 0, 0, 0.08)',
 				'elegant-hover': '0 8px 30px rgba(0, 0, 0, 0.12)',
