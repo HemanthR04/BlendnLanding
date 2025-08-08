@@ -223,7 +223,7 @@ const Navbar = () => {
       {/* Mobile Navigation - simplified overlay */}
       <div
         className={cn(
-          "fixed inset-0 z-[1000] md:hidden bg-white px-6 transition-opacity duration-300 flex flex-col items-center justify-center text-gray-900",
+          "fixed inset-0 z-[1000] md:hidden bg-white px-6 transition-opacity duration-300 flex flex-col items-center justify-start pt-20 pb-8 overflow-y-auto text-gray-900",
           isMenuOpen ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"
         )}
         id="mobile-menu"
