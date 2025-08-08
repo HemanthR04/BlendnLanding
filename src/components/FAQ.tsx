@@ -8,6 +8,67 @@ import {
 } from "@/components/ui/accordion";
 
 const FAQ = () => {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is Blend’n and how is it different from dating apps?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Blend’n is an event discovery and real-life matching app. No bios, no endless swipes — just IRL vibes. You can check in at events, see who’s around anonymously, and match when it’s mutual.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How does Blend’n keep me safe?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Profiles are blurred by default and you choose when to reveal. One-tap reporting gets fast action, and events have active moderation to keep things safe and chill.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How does anonymous matching work?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Your profile stays blurred until there’s a mutual match. You control when to reveal and who can see you. Switch between intents like dating, friends, networking, or collab.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is Ghost Mode?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Ghost Mode lets you browse events and people without appearing in the lineup. Tap in when you’re ready to be seen, tap out when you want to stay low‑key.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is Blend’n on iOS and Android?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "We’re launching on both iOS and Android. Join the waitlist to get the drop link the minute it’s live.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is Blend’n free?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Yes, the core experience is free at launch. We’re exploring optional premium perks for power users and hosts.",
+        },
+      },
+    ],
+  } as const;
+
   return (
     <section id="faq" className="py-12 sm:py-16 md:py-20 bg-white relative">
       <div className="section-container opacity-0 animate-on-scroll">
@@ -39,25 +100,67 @@ const FAQ = () => {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="who-for" className="border-gray-200">
+            
+
+            <AccordionItem value="what-different" className="border-gray-200">
               <AccordionTrigger className="text-left text-lg">
-                Who is Blend’n for?
+                What is Blend’n and how is it different from dating apps?
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-gray-700">
-                  Anyone meeting IRL: daters at fests, builders at meetups, creators & fans,
-                  runners and gym pals, students on campus. Set your mode dating, networking, friendship, or business and match your vibe.
+                  Blend’n is an event discovery and IRL matching app. No bios, no endless
+                  swipes — just real-time vibes. Check in at events, see who’s around
+                  anonymously, and reveal only when there’s a mutual match.
                 </p>
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="when-download" className="border-gray-200">
+            <AccordionItem value="pricing" className="border-gray-200">
               <AccordionTrigger className="text-left text-lg">
-                When can I download Blend’n?
+                Is Blend’n free?
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-gray-700">
-                  Dropping soon. Join the waitlist to get first access.
+                  Yes, the core experience is free at launch. We may add optional premium
+                  perks for power users and event hosts.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="anon-matching" className="border-gray-200">
+              <AccordionTrigger className="text-left text-lg">
+                How does anonymous matching work?
+              </AccordionTrigger>
+              <AccordionContent>
+                <p className="text-gray-700">
+                  Your profile stays blurred until there’s a mutual match. You control when
+                  to reveal and who can see you. Choose your intent: dating, friends,
+                  networking, or collab.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="ghost-mode" className="border-gray-200">
+              <AccordionTrigger className="text-left text-lg">
+                What is Ghost Mode?
+              </AccordionTrigger>
+              <AccordionContent>
+                <p className="text-gray-700">
+                  Want to stay low‑key? Ghost Mode lets you browse events and people without
+                  appearing in the lineup. Tap in when you’re ready to be seen, tap out when
+                  you’re not.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="platforms" className="border-gray-200">
+              <AccordionTrigger className="text-left text-lg">
+                Is Blend’n on iOS and Android?
+              </AccordionTrigger>
+              <AccordionContent>
+                <p className="text-gray-700">
+                  We’re launching on both iOS and Android. Join the waitlist to get the drop
+                  the minute it’s live.
                 </p>
                 <div className="mt-4 flex justify-center">
                   <WaitlistDialog>
@@ -81,9 +184,15 @@ const FAQ = () => {
                 </div>
               </AccordionContent>
             </AccordionItem>
+            
           </Accordion>
         </div>
       </div>
+      {/* SEO: FAQPage structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
     </section>
   );
 };

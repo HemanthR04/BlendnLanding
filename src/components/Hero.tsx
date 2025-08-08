@@ -117,7 +117,7 @@ const Hero = () => {
               className="section-title text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight opacity-0 animate-fade-in" 
               style={{ animationDelay: "0.3s" }}
             >
-              Blendn: Where <Highlighter trigger="visible" delayMs={200}>Events</Highlighter>
+              Blend’n : Where <Highlighter trigger="visible" delayMs={200}>Events</Highlighter>
               <br className="hidden sm:inline" />Meet <Highlighter action="underline">Serendipity</Highlighter>
             </h1>
             
@@ -172,11 +172,13 @@ const Hero = () => {
                   <img 
                   ref={imageRef} 
                   src="/lovable-uploads/hero-image.jpg" 
-                  alt="Blendn" 
+                  alt="Blendn app hero preview"
                   className="w-full h-auto object-cover transition-transform duration-500 ease-out" 
                     style={{ transformStyle: 'preserve-3d' }} 
                     loading="eager"
                     decoding="async"
+                    width={800}
+                    height={800}
                 />
                 <div className="absolute inset-0" style={{ backgroundImage: 'url("/hero-image.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', mixBlendMode: 'overlay', opacity: 0.5 }}></div>
               </div>

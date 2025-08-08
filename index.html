@@ -3,24 +3,30 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Blendn - Where Events Meet Serendipity</title>
     <meta name="description" content="Discover events in your city and connect with people around you—live, in real-time, and anonymously. No catfish. No cringey bios. Just vibes." />
     <meta name="author" content="Blendn" />
+    <link rel="canonical" href="https://blendn.app/" />
+    <meta name="theme-color" content="#FE5C02" />
+    <link rel="alternate" href="https://blendn.app/" hreflang="en" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://blendn.app/" />
     <meta property="og:title" content="Blendn - Where Events Meet Serendipity" />
     <meta property="og:description" content="Discover events in your city and connect with people around you—live, in real-time, and anonymously. No catfish. No cringey bios. Just vibes." />
-    <meta property="og:image" content="/new-og-image.png" />
+    <meta property="og:image" content="https://blendn.app/new-og-image.png" />
+    <meta property="og:image:alt" content="Blendn app preview" />
+    <meta property="og:site_name" content="Blendn" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://blendn.app/" />
     <meta property="twitter:title" content="Blendn - Where Events Meet Serendipity" />
     <meta property="twitter:description" content="Discover events in your city and connect with people around you—live, in real-time, and anonymously. No catfish. No cringey bios. Just vibes." />
-    <meta property="twitter:image" content="/new-og-image.png" />
+    <meta property="twitter:image" content="https://blendn.app/new-og-image.png" />
+    <meta name="twitter:image:alt" content="Blendn app preview" />
     
     <!-- Additional Meta Tags -->
     <meta name="keywords" content="events, social, connect, meet people, local events, real-time, anonymous, dating, networking" />
@@ -33,12 +39,42 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="image" href="/Header-background.webp" imagesrcset="/Header-background.webp 1x" imagesizes="100vw">
     <link rel="preload" as="image" href="/lovable-uploads/hero-image.jpg" imagesrcset="/lovable-uploads/hero-image.jpg 1x" imagesizes="(max-width: 768px) 100vw, 50vw">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+
+    <!-- Inline CSS to prevent skip link flash before app CSS loads -->
+    <style>
+      .skip-to-content{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+      .skip-to-content:focus{left:8px;top:8px;width:auto;height:auto;overflow:visible;background:#000;color:#fff;padding:8px 12px;z-index:100}
+    </style>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Blendn",
+        "url": "https://blendn.app/",
+        "logo": "https://blendn.app/logo.svg",
+        "sameAs": [
+          "https://www.instagram.com/blendn.social/"
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Blendn",
+        "url": "https://blendn.app/"
+      }
+    </script>
   </head>
 
   <body>
+    <a href="#main" class="skip-to-content">Skip to main content</a>
     <div id="root"></div>
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>

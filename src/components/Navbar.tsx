@@ -108,7 +108,7 @@ const Navbar = () => {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 overflow-visible min-h-[20px] bg-transparent border-transparent"
       )}
     >
-      <div className="max-w-7xl mx-auto grid grid-cols-3 items-center px-4 sm:px-6 lg:px-8 min-h-[20px]">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 min-h-[20px] relative">
         {/* Left: Logo */}
         <div className="flex items-center gap-2">
           <a
@@ -120,12 +120,31 @@ const Navbar = () => {
               scrollToTop();
             }}
           >
-            <img src="/brandlogo.webp" alt="Blendn logo" className="h-10 sm:h-16 md:h-16 lg:h-20 w-auto md:-my-2 lg:-my-3" />
+            {/* Mobile logo */}
+            <img
+              src="/logo2.webp"
+              alt="Blendn logo"
+              className="h-16  w-auto md:hidden"
+              width={160}
+              height={48}
+              loading="eager"
+              decoding="async"
+            />
+            {/* Desktop logo */}
+            <img
+              src="/brandlogo.webp"
+              alt="Blendn logo"
+              className="hidden md:block h-16 lg:h-20 w-auto md:-my-2 lg:-my-3"
+              width={200}
+              height={80}
+              loading="eager"
+              decoding="async"
+            />
           </a>
         </div>
 
-        {/* Center: Desktop Navigation */}
-        <nav className="hidden md:flex items-center justify-center gap-2">
+        {/* Center: Desktop Navigation (absolute centered on desktop) */}
+        <nav className="hidden md:flex items-center gap-2 absolute left-1/2 -translate-x-1/2" aria-label="Primary">
           <a
             href="#"
             className={cn(
@@ -134,6 +153,7 @@ const Navbar = () => {
                 ? "bg-gray-900 text-white shadow-md"
                 : "bg-white/70 text-gray-800 hover:bg-white"
             )}
+            aria-current={activeSection === "home" ? "page" : undefined}
             onClick={(e) => {
               e.preventDefault();
               scrollToTop();
@@ -149,6 +169,7 @@ const Navbar = () => {
                 ? "bg-gray-900 text-white shadow-md"
                 : "bg-white/70 text-gray-800 hover:bg-white"
             )}
+            aria-current={activeSection === "features" ? "true" : undefined}
           >
             Features
           </a>
@@ -160,6 +181,7 @@ const Navbar = () => {
                 ? "bg-gray-900 text-white shadow-md"
                 : "bg-white/70 text-gray-800 hover:bg-white"
             )}
+            aria-current={activeSection === "how" ? "true" : undefined}
           >
             How it works
           </a>
@@ -171,6 +193,7 @@ const Navbar = () => {
                 ? "bg-gray-900 text-white shadow-md"
                 : "bg-white/70 text-gray-800 hover:bg-white"
             )}
+            aria-current={activeSection === "contact" ? "true" : undefined}
             onClick={() => setActiveSection("contact")}
           >
             Contact
@@ -178,7 +201,7 @@ const Navbar = () => {
         </nav>
 
         {/* Right: CTA (desktop) + Mobile menu button */}
-        <div className="flex items-center justify-end gap-2">
+        <div className="flex items-center gap-2">
           <WaitlistDialog>
             <Button size="sm" className="hidden md:inline-flex rounded-full h-9 px-4 fadeIn stagger-3">
               Join Waitlist
@@ -189,126 +212,104 @@ const Navbar = () => {
             className="md:hidden text-gray-700 p-3 focus:outline-none rounded-full hover:bg-gray-100 active:bg-gray-200 transition"
             onClick={toggleMenu}
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Navigation - overlay + sliding panel */}
+      {/* Mobile Navigation - simplified overlay */}
       <div
         className={cn(
-          "fixed inset-0 z-50 md:hidden transition-all",
-          isMenuOpen ? "pointer-events-auto" : "pointer-events-none"
+          "fixed inset-0 z-[1000] md:hidden bg-white px-6 transition-opacity duration-300 flex flex-col items-center justify-center text-gray-900",
+          isMenuOpen ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"
         )}
+        id="mobile-menu"
         aria-hidden={!isMenuOpen}
       >
-        {/* Background overlay */}
-        <div
-          className={cn(
-            "absolute inset-0 bg-white transition-opacity duration-300",
-            isMenuOpen ? "opacity-100" : "opacity-0"
-          )}
+        <button
+          className="absolute right-4 top-4 p-2 rounded-full text-gray-700 hover:bg-gray-100 active:bg-gray-200 transition"
+          aria-label="Close menu"
           onClick={() => {
             setIsMenuOpen(false);
             document.body.style.overflow = '';
           }}
-        />
-
-        {/* Fullscreen menu content */}
-        <div
-          className={cn(
-            "absolute inset-0 bg-white px-6 transition-opacity duration-300 flex flex-col items-center justify-center",
-            isMenuOpen ? "opacity-100" : "opacity-0"
-          )}
         >
-          {/* Close button inside overlay */}
-          <button
-            className="absolute right-4 top-4 p-2 rounded-full text-gray-700 hover:bg-gray-100 active:bg-gray-200 transition"
-            aria-label="Close menu"
+          <X size={22} />
+        </button>
+        <nav className="w-full max-w-sm flex flex-col items-center gap-3">
+          <a
+            href="#"
+            className={cn(
+              "w-full text-center text-xl font-medium py-4 px-4 rounded-xl",
+              activeSection === "home" ? "bg-gray-900 text-white" : "bg-gray-50 hover:bg-gray-100 text-gray-900"
+            )}
+            aria-current={activeSection === "home" ? "page" : undefined}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToTop();
+              setIsMenuOpen(false);
+              document.body.style.overflow = '';
+            }}
+          >
+            Home
+          </a>
+          <a
+            href="#features"
+            className={cn(
+              "w-full text-center text-xl font-medium py-4 px-4 rounded-xl",
+              activeSection === "features" ? "bg-gray-900 text-white" : "bg-gray-50 hover:bg-gray-100 text-gray-900"
+            )}
+            aria-current={activeSection === "features" ? "true" : undefined}
             onClick={() => {
               setIsMenuOpen(false);
               document.body.style.overflow = '';
             }}
           >
-            <X size={22} />
-          </button>
-          <nav className="w-full max-w-sm flex flex-col items-center gap-3">
-            <a
-              href="#"
-              className={cn(
-                "w-full text-center text-xl font-medium py-4 px-4 rounded-xl",
-                activeSection === "home"
-                  ? "bg-gray-900 text-white"
-                  : "bg-gray-50 hover:bg-gray-100"
-              )}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToTop();
-                setIsMenuOpen(false);
-                document.body.style.overflow = '';
-              }}
-            >
-              Home
-            </a>
-            <a
-              href="#features"
-              className={cn(
-                "w-full text-center text-xl font-medium py-4 px-4 rounded-xl",
-                activeSection === "features"
-                  ? "bg-gray-900 text-white"
-                  : "bg-gray-50 hover:bg-gray-100"
-              )}
-              onClick={() => {
-                setIsMenuOpen(false);
-                document.body.style.overflow = '';
-              }}
-            >
-              Features
-            </a>
-            <a
-              href="#faq"
-              className={cn(
-                "w-full text-center text-xl font-medium py-4 px-4 rounded-xl whitespace-nowrap",
-                activeSection === "how"
-                  ? "bg-gray-900 text-white"
-                  : "bg-gray-50 hover:bg-gray-100"
-              )}
-              onClick={() => {
-                setIsMenuOpen(false);
-                document.body.style.overflow = '';
-              }}
-            >
-              How it works
-            </a>
-            <a
-              href="#footer"
-              className={cn(
-                "w-full text-center text-xl font-medium py-4 px-4 rounded-xl",
-                activeSection === "contact"
-                  ? "bg-gray-900 text-white"
-                  : "bg-gray-50 hover:bg-gray-100"
-              )}
-              onClick={() => {
-                setIsMenuOpen(false);
-                document.body.style.overflow = '';
-                setActiveSection("contact");
-              }}
-            >
-              Contact
-            </a>
-            <a
-              href="#newsletter"
-              className="mt-4 button-primary inline-flex justify-center items-center rounded-full"
-              onClick={() => {
-                setIsMenuOpen(false);
-                document.body.style.overflow = '';
-              }}
-            >
-              Join Waitlist
-            </a>
-          </nav>
-        </div>
+            Features
+          </a>
+          <a
+            href="#faq"
+            className={cn(
+              "w-full text-center text-xl font-medium py-4 px-4 rounded-xl whitespace-nowrap",
+              activeSection === "how" ? "bg-gray-900 text-white" : "bg-gray-50 hover:bg-gray-100 text-gray-900"
+            )}
+            aria-current={activeSection === "how" ? "true" : undefined}
+            onClick={() => {
+              setIsMenuOpen(false);
+              document.body.style.overflow = '';
+            }}
+          >
+            How it works
+          </a>
+          <a
+            href="#footer"
+            className={cn(
+              "w-full text-center text-xl font-medium py-4 px-4 rounded-xl",
+              activeSection === "contact" ? "bg-gray-900 text-white" : "bg-gray-50 hover:bg-gray-100 text-gray-900"
+            )}
+            aria-current={activeSection === "contact" ? "true" : undefined}
+            onClick={() => {
+              setIsMenuOpen(false);
+              document.body.style.overflow = '';
+              setActiveSection("contact");
+            }}
+          >
+            Contact
+          </a>
+          <a
+            href="#newsletter"
+            className="mt-4 button-primary inline-flex justify-center items-center rounded-full"
+            onClick={() => {
+              setIsMenuOpen(false);
+              document.body.style.overflow = '';
+            }}
+          >
+            Join Waitlist
+          </a>
+        </nav>
       </div>
     </header>
   );

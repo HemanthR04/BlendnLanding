@@ -10,7 +10,7 @@ const Footer = () => {
           {/* Brand + Tagline */}
           <div className="space-y-4">
             <a href="#top" className="inline-flex items-center gap-3" aria-label="Blendn home">
-              <img src="/logo2.webp" alt="Blendn logo" className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto" />
+              <img src="/logo2.webp" alt="Blendn logo" className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto" loading="lazy" decoding="async" width={256} height={64} />
              
             </a>
             <p className="text-gray-600 text-sm leading-relaxed max-w-sm">

@@ -19,8 +19,12 @@ const ImageShowcaseSection = () => {
           <div className="w-full">
             <img 
               src="/lovable-uploads/image2.jpg" 
-              alt="Advanced humanoid robot with orange and white design" 
+              alt="Blendn interface showcase on device"
               className="w-full h-auto object-cover"
+              loading="lazy"
+              decoding="async"
+              width={1600}
+              height={900}
             />
           </div>
           <div className="bg-white p-4 sm:p-8">

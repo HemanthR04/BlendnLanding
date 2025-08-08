@@ -106,6 +106,21 @@
     @apply bg-white text-black font-sans antialiased;
   }
 
+  /* Skip link for accessibility */
+  .skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #000;
+    color: #fff;
+    padding: 8px 12px;
+    z-index: 100;
+    transition: top 0.2s ease;
+  }
+  .skip-to-content:focus {
+    top: 8px;
+  }
+
   /* Smooth scrolling */
   html {
     scroll-behavior: smooth;

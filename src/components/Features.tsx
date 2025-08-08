@@ -103,37 +103,37 @@ const Features = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           <FeatureCard
-            icon={<span aria-hidden>✨</span>}
+            icon={<span aria-hidden="true">✨</span>}
             title="Smart Feed"
             description="Your city, your vibe: trending drops, niche scenes, and hidden gems—no doomscroll."
             index={0}
           />
           <FeatureCard
-            icon={<span aria-hidden>👻</span>}
+            icon={<span aria-hidden="true">👻</span>}
             title="Check‑in + Ghost Mode"
             description="Tap in at events to unlock matches. Prefer low‑key? Switch to ghost mode and browse without being seen."
             index={1}
           />
           <FeatureCard
-            icon={<span aria-hidden>🫧</span>}
+            icon={<span aria-hidden="true">🫧</span>}
             title="Anonymous Match"
             description={`Blurred until it’s mutual. Pick your intent: dating, friends, collab, or networking.`}
             index={2}
           />
           <FeatureCard
-            icon={<span aria-hidden>💬</span>}
+            icon={<span aria-hidden="true">💬</span>}
             title="Event Chat (No Cringe)"
             description="Anonymous chat for every event. Ask questions, find the afters, or drop a one‑liner."
             index={3}
           />
           <FeatureCard
-            icon={<span aria-hidden>🎥</span>}
+            icon={<span aria-hidden="true">🎥</span>}
             title="Live Stories"
             description="10‑second vibe check from people there. Decide fast, pull up or pass."
             index={4}
           />
           <FeatureCard
-            icon={<span aria-hidden>👥</span>}
+            icon={<span aria-hidden="true">👥</span>}
             title="Crew Linking"
             description={`Roll with your people. Match your group with other squads on the same energy.`}
             index={5}
