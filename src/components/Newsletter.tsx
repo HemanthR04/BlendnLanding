@@ -17,7 +17,7 @@ const Newsletter = () => {
           
           <h2 className="text-5xl font-display font-bold mb-4 text-center">Join the waitlist</h2>
           <p className="text-xl text-gray-700 mb-10 text-center">
-            Be first to hear about Blendn's launch and get early access to the app.
+            Be first to hear about Blend’n launch and get early access to the app.
           </p>
           
           <div className="flex justify-center">

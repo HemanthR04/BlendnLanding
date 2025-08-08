@@ -20,7 +20,7 @@ const SpecsSection = () => {
         <div className="max-w-5xl pl-4 sm:pl-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display leading-tight mb-8 sm:mb-12">
             <span className="block bg-clip-text text-transparent bg-[url('/text-mask-image.jpg')] bg-cover bg-center">
-            Blendn doesn&apos;t replace how you connect—it supercharges it. By surfacing events, sparking anonymous interactions, and learning what vibes with you, Blendn helps you do what matters most: show up, vibe out, and make real connections.
+            Blend’n  doesn&apos;t replace how you connect—it supercharges it. By surfacing events, sparking anonymous interactions, and learning what vibes with you, Blendn helps you do what matters most: show up, vibe out, and make real connections.
             </span>
           </h2>
         </div>

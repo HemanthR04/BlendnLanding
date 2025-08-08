@@ -20,7 +20,7 @@ const MadeByHumans = () => {
             Built by Humans. Supercharged by AI.
           </h2>
           <p className="section-subtitle mx-auto max-w-2xl">
-            Blendn pairs machine precision with human intuition to spark conversations that actually go somewhere.
+            Blend’n pairs machine precision with human intuition to spark conversations that actually go somewhere.
           </p>
         </div>
 
@@ -36,9 +36,9 @@ const MadeByHumans = () => {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-2 text-gray-900">Human‑in‑the‑Loop by Default</h3>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">Human in the Loop by Default</h3>
                   <p className="text-gray-600">
-                    Our models do the heavy lifting—ranking, timing, and context—while humans make the calls that matter. You stay in control, always.
+                    Our models do the heavy lifting ranking, timing, and context while humans make the calls that matter. You stay in control, always.
                   </p>
                 </div>
               </div>
@@ -55,7 +55,7 @@ const MadeByHumans = () => {
                 <div>
                   <h3 className="text-xl font-semibold mb-2 text-gray-900">Context‑Aware, Not Creepy</h3>
                   <p className="text-gray-600">
-                    Signals, not surveillance. We use ambient context to suggest better moments to connect—without tracking that compromises trust.
+                    Signals, not surveillance. We use ambient context to suggest better moments to connect without tracking that compromises trust.
                   </p>
                 </div>
               </div>
@@ -72,7 +72,7 @@ const MadeByHumans = () => {
                 <div>
                   <h3 className="text-xl font-semibold mb-2 text-gray-900">Privacy First. Joyful by Design.</h3>
                   <p className="text-gray-600">
-                    Anonymous by default, transparent by choice. Delightful micro‑interactions make meeting new people feel easy—not awkward.
+                    Anonymous by default, transparent by choice. Delightful micro‑interactions make meeting new people feel easy not awkward.
                   </p>
                 </div>
               </div>
@@ -102,7 +102,7 @@ const MadeByHumans = () => {
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-bold mb-2">Where Technology Meets Humanity</h3>
                   <p className="text-white/90 text-sm sm:text-base max-w-md">
-                    We build tools that make it easier to be more human—nudging the right moments, not forcing them.
+                    We build tools that make it easier to be more human nudging the right moments, not forcing them.
                   </p>
 
                   {/* Floating badges */}
