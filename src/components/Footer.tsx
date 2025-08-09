@@ -14,7 +14,7 @@ const Footer = () => {
              
             </a>
             <p className="text-gray-600 text-sm leading-relaxed max-w-sm">
-              Blendn helps you meet people IRL at events. Smart feed, anonymous
+              Blend'n helps you meet people IRL at events. Smart feed, anonymous
               matching, crew linking and more built for real‑world connections.
             </p>
           </div>
