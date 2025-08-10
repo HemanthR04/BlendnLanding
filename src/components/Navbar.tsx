@@ -202,11 +202,9 @@ const Navbar = () => {
 
         {/* Right: CTA (desktop) + Mobile menu button */}
         <div className="flex items-center gap-2">
-          <WaitlistDialog>
-            <Button size="sm" className="hidden md:inline-flex rounded-full h-9 px-4 fadeIn stagger-3">
-              Join Waitlist
-            </Button>
-          </WaitlistDialog>
+          <a href="#get-started" className="hidden md:inline-flex rounded-full h-9 px-4 fadeIn stagger-3 items-center bg-pulse-600 hover:bg-pulse-700 text-white">
+            List Your Event
+          </a>
           {/* Mobile menu button - top right on mobile */}
           <button
             className="md:hidden text-gray-700 p-3 focus:outline-none rounded-full hover:bg-gray-100 active:bg-gray-200 transition"

@@ -117,41 +117,45 @@ const Hero = () => {
               className="section-title text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight opacity-0 animate-fade-in" 
               style={{ animationDelay: "0.3s" }}
             >
-              Blend’n : Where <Highlighter trigger="visible" delayMs={200}>Events</Highlighter>
-              <br className="hidden sm:inline" />Meet <Highlighter action="underline">Serendipity</Highlighter>
+              Host Better. Engage Smarter. Sell Out Faster.
             </h1>
             
             <p 
               style={{ animationDelay: "0.5s" }} 
               className="section-subtitle mt-3 sm:mt-6 mb-4 sm:mb-8 leading-relaxed opacity-0 animate-fade-in text-gray-950 font-normal text-base sm:text-lg text-left"
             >
-              Blend’n helps you discover events in your city and connect with people around you live, in real-time, and anonymously. No catfish. No cringey bios. Just vibes.
+              Use Blend’n to drive ticket sales, boost in-event engagement, and match your audience with the right people—while you collect insights that matter.
             </p>
             
             <div 
               className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-in" 
               style={{ animationDelay: "0.7s" }}
             >
-              
-              <WaitlistDialog>
-                <button 
-                  className="flex items-center justify-center group w-full sm:w-auto text-center" 
-                  style={{
-                    backgroundColor: '#FE5C02',
-                    borderRadius: '1440px',
-                    boxSizing: 'border-box',
-                    color: '#FFFFFF',
-                    cursor: 'pointer',
-                    fontSize: '14px',
-                    lineHeight: '20px',
-                    padding: '16px 24px',
-                    border: '1px solid white',
-                  }}
-                >
-                  Join the waitlist
-                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </button>
-              </WaitlistDialog>
+              <a 
+                href="#get-started" 
+                className="flex items-center justify-center group w-full sm:w-auto text-center bg-pulse-600 hover:bg-pulse-700 text-white rounded-full px-6 py-4 text-sm leading-5 border border-white transition-colors"
+              >
+                List Your Event
+                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </a>
+              <a 
+                href="#get-started" 
+                className="flex items-center justify-center group w-full sm:w-auto text-center"
+                style={{
+                  backgroundColor: '#111827',
+                  borderRadius: '1440px',
+                  boxSizing: 'border-box',
+                  color: '#FFFFFF',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  lineHeight: '20px',
+                  padding: '16px 24px',
+                  border: '1px solid white',
+                }}
+              >
+                Request Demo
+                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </a>
             </div>
           </div>
           

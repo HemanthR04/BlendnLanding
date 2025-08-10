@@ -2,14 +2,11 @@
 import React, { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import HumanoidSection from "@/components/HumanoidSection";
-import SpecsSection from "@/components/SpecsSection";
-import DetailsSection from "@/components/DetailsSection";
-import ImageShowcaseSection from "@/components/ImageShowcaseSection";
-import Features from "@/components/Features";
+import OrganizerWhatIs from "@/components/OrganizerWhatIs";
+import OrganizerWhyList from "@/components/OrganizerWhyList";
+import OrganizerEventTypes from "@/components/OrganizerEventTypes";
 import Testimonials from "@/components/Testimonials";
-import Newsletter from "@/components/Newsletter";
-import MadeByHumans from "@/components/MadeByHumans";
+import OrganizerGetStarted from "@/components/OrganizerGetStarted";
 import Footer from "@/components/Footer";
 import FAQ from "@/components/FAQ";
 
@@ -62,17 +59,15 @@ const Index = () => {
   return (
     <div className="min-h-screen app-fade-in" id="top">
       <Navbar />
-      <main id="main" className="space-y-4 sm:space-y-8"> {/* Reduced space on mobile */}
+      <main id="main" className="space-y-4 sm:space-y-8">
         <Hero />
-        <HumanoidSection />
-        <SpecsSection />
-        {/* <DetailsSection /> */}
-        {/* <ImageShowcaseSection /> */}
-        <Features />
+        <OrganizerWhatIs />
+        <OrganizerEventTypes />
+        <OrganizerWhyList />
+        
         <Testimonials />
         <FAQ />
-        <Newsletter />
-        <MadeByHumans />
+        <OrganizerGetStarted />
       </main>
       <Footer />
     </div>

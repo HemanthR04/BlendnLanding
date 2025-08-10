@@ -9,31 +9,24 @@ interface TestimonialProps {
   backgroundImage?: string;
 }
 
-const testimonials: TestimonialProps[] = [{
-  content: "I matched with my co-founder at a DJ night. No regrets.",
-  author: "Future Startup Story",
-  role: "Bangalore Entrepreneur",
-  gradient: "from-blue-700 via-indigo-800 to-purple-900",
-  backgroundImage: "/background-section1.png"
-}, {
-  content: "This app should be illegal for how fun it is.",
-  author: "Some dude who swiped at 13 people in 10 minutes",
-  role: "Professional Networker",
-  gradient: "from-indigo-900 via-purple-800 to-orange-500",
-  backgroundImage: "/background-section2.png"
-}, {
-  content: "Saw my college crush at an event on matchmaking. Didn't die inside.",
-  author: "Anonymous Blendn user",
-  role: "Survivor of Awkward Encounters",
-  gradient: "from-purple-800 via-pink-700 to-red-500",
-  backgroundImage: "/background-section3.png"
-}, {
-  content: "Finally, an app that gets that I want to meet people IRL, not just endless texting. Game changer for Bangalore's social scene!",
-  author: "Soon-to-be Social Butterfly",
-  role: "Koramangala Coffee Enthusiast",
-  gradient: "from-orange-600 via-red-500 to-purple-600",
-  backgroundImage: "/background-section1.png"
-}];
+const testimonials: TestimonialProps[] = [
+  {
+    content:
+      "Blend’n increased our event’s engagement rate by 3x. Attendees spent more time at the venue just to meet their matches.",
+    author: "Fest Head, Tier-1 College",
+    role: "Organizer",
+    gradient: "from-blue-700 via-indigo-800 to-purple-900",
+    backgroundImage: "/background-section1.png",
+  },
+  {
+    content:
+      "Our sponsors got shoutouts in attendee stories without needing extra push. That's priceless word-of-mouth.",
+    author: "Music Fest Organizer",
+    role: "Organizer",
+    gradient: "from-indigo-900 via-purple-800 to-orange-500",
+    backgroundImage: "/background-section2.png",
+  },
+];
 
 const TestimonialCard = ({
   content,
@@ -58,16 +51,14 @@ const TestimonialCard = ({
 const Testimonials = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  return <section className="py-12 bg-white relative" id="testimonials" ref={sectionRef}> {/* Reduced from py-20 */}
+  return <section className="py-12 bg-white relative" id="success" ref={sectionRef}>
       <div className="section-container opacity-0 animate-on-scroll">
         <div className="flex items-center gap-4 mb-6">
           <div className="pulse-chip">
-            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">04</span>
-            <span>Testimonials</span>
+            <span>Success Stories</span>
           </div>
         </div>
-        
-        <h2 className="text-5xl font-display font-bold mb-12 text-left">What People Might Say Soon!</h2>
+        <h2 className="text-5xl font-display font-bold mb-12 text-left">Proven impact for organizers</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {testimonials.map((testimonial, index) => <TestimonialCard key={index} content={testimonial.content} author={testimonial.author} role={testimonial.role} gradient={testimonial.gradient} backgroundImage={testimonial.backgroundImage} />)}
