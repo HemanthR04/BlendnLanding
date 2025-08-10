@@ -34,12 +34,12 @@ const TestimonialCard = ({
   role,
   backgroundImage = "/background-section1.png"
 }: TestimonialProps) => {
-  return <div className="bg-cover bg-center rounded-3xl p-8 h-full flex flex-col justify-between text-white transform transition-transform duration-300 hover:-translate-y-2 relative overflow-hidden" style={{
+  return <div className="bg-cover bg-center rounded-3xl p-6 sm:p-8 h-full flex flex-col justify-between text-white transform transition-transform duration-300 hover:-translate-y-2 relative overflow-hidden" style={{
     backgroundImage: `url('${backgroundImage}')`
   }}>
       
       <div className="relative z-0">
-        <p className="text-xl mb-8 font-medium leading-relaxed pr-20">{`"${content}"`}</p>
+        <p className="text-lg sm:text-xl mb-8 font-medium leading-relaxed pr-0 sm:pr-20">{`"${content}"`}</p>
         <div>
           <h4 className="font-semibold text-xl">{author}</h4>
           <p className="text-white/80">{role}</p>
@@ -58,7 +58,7 @@ const Testimonials = () => {
             <span>Success Stories</span>
           </div>
         </div>
-        <h2 className="text-5xl font-display font-bold mb-12 text-left">Proven impact for organizers</h2>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-12 text-left">Proven impact for organizers</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {testimonials.map((testimonial, index) => <TestimonialCard key={index} content={testimonial.content} author={testimonial.author} role={testimonial.role} gradient={testimonial.gradient} backgroundImage={testimonial.backgroundImage} />)}

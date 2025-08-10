@@ -16,7 +16,7 @@ const OrganizerWhatIs = () => {
         </div>
 
         {/* Bento grid */}
-        <div className="grid grid-cols-1 md:grid-cols-6 auto-rows-[150px] md:auto-rows-[170px] gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-6 md:auto-rows-[170px] gap-4 sm:gap-6">
           {/* A. Real-time audience visibility (Large) */}
           <div className="group relative col-span-1 md:col-span-3 md:row-span-2 rounded-3xl border bg-white p-6 sm:p-8 shadow-elegant transition-all hover:shadow-elegant-hover overflow-hidden">
             <div className="absolute -top-20 -right-20 h-56 w-56 rounded-full bg-pulse-100 blur-3xl opacity-60" />
