@@ -14,6 +14,13 @@ import {
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { createClient } from '@supabase/supabase-js';
+
+// Initialize Supabase client
+const supabase = createClient(
+  'https://rycftadewrklmsswzviy.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ5Y2Z0YWRld3JrbG1zc3d6dml5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMxODA1MzUsImV4cCI6MjA2ODc1NjUzNX0.IPzOzYrGthMKXkj9glTHZ_T9e-25fbrjjJ6KAh7gwjg' // Replace with your actual anon key from Supabase dashboard
+);
 
 const waitlistSchema = z.object({
   fullName: z
@@ -52,34 +59,43 @@ const WaitlistDialog: React.FC<WaitlistDialogProps> = ({ children }) => {
   const onSubmit = async (values: WaitlistValues) => {
     setIsSubmitting(true);
     try {
-      const response = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
+      // Insert directly into Supabase
+      const { error } = await supabase
+        .from('waitlist_signups')
+        .insert({
+          full_name: values.fullName,
+          email: values.email,
+          phone: values.phone,
+          source: 'blendn-landing',
+          user_agent: navigator.userAgent,
+          ip: '', // We can't get IP from frontend, but the trigger will still work
+        });
 
-      if (!response.ok) {
-        let message = "Request failed";
-        try {
-          const data = await response.json();
-          if (data?.error) message = data.error;
-        } catch (_) {
-          // ignore
+      if (error) {
+        // Handle duplicate email error gracefully
+        if (error.code === '23505') {
+          toast({
+            title: "You're already on the waitlist!",
+            description: "We'll be in touch soon.",
+          });
+          setOpen(false);
+          form.reset();
+          return;
         }
-        throw new Error(message);
+        throw error;
       }
 
       toast({
         title: "Thank you for joining the waitlist!",
-        description: "We\'ll be in touch soon.",
+        description: "We'll be in touch soon.",
       });
       setOpen(false);
       form.reset();
     } catch (error) {
+      console.error('Waitlist submission error:', error);
       toast({
         title: "Something went wrong",
-        description:
-          error instanceof Error ? error.message : "Please try again in a moment.",
+        description: "Please try again in a moment.",
       });
     } finally {
       setIsSubmitting(false);
