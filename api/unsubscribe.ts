@@ -19,10 +19,15 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Call the unsubscribe function in Supabase
-    const { data, error } = await supabase.rpc('unsubscribe_from_waitlist', {
-      token: token
-    });
+    // Handle unsubscribe directly in the API
+    const { data, error } = await supabase
+      .from('waitlist_signups')
+      .update({ 
+        status: 'unsubscribed',
+        confirmed_at: new Date().toISOString()
+      })
+      .eq('unsub_token', token)
+      .select('email');
 
     if (error) {
       console.error('Unsubscribe error:', error);
@@ -32,7 +37,14 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Redirect to a success page or show success message
+    if (!data || data.length === 0) {
+      return NextResponse.json(
+        { error: 'Invalid unsubscribe token' },
+        { status: 400 }
+      );
+    }
+
+    // Redirect to success page
     return NextResponse.redirect(new URL('/unsubscribe-success', request.url));
 
   } catch (error) {
@@ -55,10 +67,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Call the unsubscribe function in Supabase
-    const { data, error } = await supabase.rpc('unsubscribe_from_waitlist', {
-      token: token
-    });
+    // Handle unsubscribe directly in the API
+    const { data, error } = await supabase
+      .from('waitlist_signups')
+      .update({ 
+        status: 'unsubscribed',
+        confirmed_at: new Date().toISOString()
+      })
+      .eq('unsub_token', token)
+      .select('email');
 
     if (error) {
       console.error('Unsubscribe error:', error);
@@ -68,9 +85,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    if (!data || data.length === 0) {
+      return NextResponse.json(
+        { error: 'Invalid unsubscribe token' },
+        { status: 400 }
+      );
+    }
+
     return NextResponse.json({ 
       success: true, 
-      message: data 
+      message: `Successfully unsubscribed ${data[0].email} from the waitlist.`
     });
 
   } catch (error) {
