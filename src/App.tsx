@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import { Analytics } from "@vercel/analytics/next"
+import { inject } from "@vercel/analytics"
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -21,6 +21,9 @@ const App = () => {
     const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
     const hasHover = window.matchMedia("(hover: hover)").matches;
     setEnableCursor(hasFinePointer && hasHover && !prefersReducedMotion);
+    
+    // Initialize Vercel Analytics
+    inject();
   }, []);
 
   return (
@@ -28,7 +31,7 @@ const App = () => {
       <TooltipProvider>
         {enableCursor && <SmoothCursor />}
         <Toaster />
-        <Analytics/>
+
         <Sonner />
         <BrowserRouter>
           <Routes>
