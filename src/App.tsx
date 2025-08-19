@@ -7,6 +7,8 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import UnsubscribeSuccess from "./pages/UnsubscribeSuccess";
+import Unsubscribe from "./pages/Unsubscribe";
 import { inject } from "@vercel/analytics"
 const queryClient = new QueryClient();
 
@@ -36,6 +38,8 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/unsubscribe" element={<Unsubscribe />} />
+            <Route path="/unsubscribe-success" element={<UnsubscribeSuccess />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
