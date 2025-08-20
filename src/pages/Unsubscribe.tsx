@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import { createClient } from '@supabase/supabase-js';
+
+// Initialize Supabase client (same as your frontend)
+const supabase = createClient(
+  'https://rycftadewrklmsswzviy.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ5Y2Z0YWRld3JrbG1zc3d6dml5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMxODA1MzUsImV4cCI6MjA2ODc1NjUzNX0.IPzOzYrGthMKXkj9glTHZ_T9e-25fbrjjJ6KAh7gwjg'
+);
 
 const Unsubscribe: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -16,30 +23,45 @@ const Unsubscribe: React.FC = () => {
       return;
     }
 
-    // Call the unsubscribe API
+    // Handle unsubscribe directly using Supabase client
     const unsubscribe = async () => {
       try {
-        const response = await fetch('/api/unsubscribe', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ token }),
-        });
+        console.log('Processing unsubscribe for token:', token);
+        
+        // Update the database directly
+        const { data, error } = await supabase
+          .from('waitlist_signups')
+          .update({ 
+            status: 'unsubscribed',
+            confirmed_at: new Date().toISOString()
+          })
+          .eq('unsub_token', token)
+          .select('email');
 
-        if (response.ok) {
-          setStatus('success');
-          setMessage('Successfully unsubscribed from the waitlist');
-          
-          // Redirect to success page after 2 seconds
-          setTimeout(() => {
-            navigate('/unsubscribe-success');
-          }, 2000);
-        } else {
+        if (error) {
+          console.error('Supabase update error:', error);
           setStatus('error');
           setMessage('Failed to unsubscribe. Please try again.');
+          return;
         }
+
+        if (!data || data.length === 0) {
+          setStatus('error');
+          setMessage('Invalid unsubscribe token');
+          return;
+        }
+
+        console.log('Successfully unsubscribed:', data[0].email);
+        setStatus('success');
+        setMessage(`Successfully unsubscribed ${data[0].email} from the waitlist`);
+        
+        // Redirect to success page after 2 seconds
+        setTimeout(() => {
+          navigate('/unsubscribe-success');
+        }, 2000);
+        
       } catch (error) {
+        console.error('Unsubscribe error:', error);
         setStatus('error');
         setMessage('An error occurred. Please try again.');
       }
@@ -135,7 +157,7 @@ const Unsubscribe: React.FC = () => {
         <p className="text-sm text-gray-500">Redirecting to confirmation page...</p>
       </div>
     </div>
-    );
+  );
 };
 
 export default Unsubscribe;
